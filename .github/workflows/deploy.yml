@@ -11,11 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: add_env_file
-        run: |
-          echo -e "${{ vars.ENV_FILE }}" >> .env
-          cat .env
-
       - name: Checkout repo
         uses: actions/checkout@v3
 
@@ -25,6 +20,11 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
+      - name: Add .env file
+        run: |
+          echo -e "${{ vars.ENV_FILE }}" >> .env
+          cat .env
+          
       - name: Build project
         run: npm run build
 
