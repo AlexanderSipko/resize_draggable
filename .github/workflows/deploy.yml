@@ -22,12 +22,12 @@ jobs:
 
       - name: Add .env file
         run: |
-          echo -e "${{ vars.ENV_FILE }}" >> .env
-          cat .env
+          echo -e "${{ vars.ENV_FILE }}" > .env
+          cat ./.env
 
       - name: Build project
         run: |
-          ls
+          ls -a
           npm run build
 
       - name: Upload production-ready build files
