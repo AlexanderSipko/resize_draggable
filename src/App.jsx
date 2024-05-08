@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RNDElement } from './components/RNDElement';
 
 import './App.css'
@@ -29,6 +29,10 @@ export const App = () => {
     'box4':4
   })
 
+  useEffect(() => {
+    document.title = import.meta.env.VITE_NAME
+  }, )
+  
   const reVisibleElement = (idBox) => {
     const maxZIndex = Object.values(zIndex).sort((a, b) => b-a)[0]
     const maxElementKey = Object.keys(zIndex).find(key => zIndex[key] === maxZIndex);
