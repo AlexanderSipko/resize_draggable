@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import {Rnd} from 'react-rnd';
+import { RNDElement } from './components/RNDElement';
+
 import './App.css'
 
 const Box = () => (
-  <div className="box1">box1</div>
+  <div className='box1'>
+     box1
+  </div>
 );
 
 const Box_2 = () => (
@@ -17,56 +20,6 @@ const Box_3 = () => (
 const Box_4 = () => (
   <div className="box4">box4</div>
 );
-
-
-function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width=200, height=100, zIndex=1}) {
-  const [ position, setPosition] = useState({x:x, y:y})
-  const [ size, setSize] = useState({width:width, height:height})
-  const [isDragged, setIsDragged] = useState(false)
-  const [isResized, setIsResized] = useState(false)
-
-  const resized = (newSize) => {
-    setSize(newSize)
-  }
-  const moving = (newPosition) => {
-    setPosition(newPosition)
-    setIsDragged(false)
-  }
-  const onDragStart = () => {
-    setIsDragged(true)
-    REVISABLE && REVISABLE.reVisibleElement(idBox)
-  }
-
-  const setStyle = () => {
-    if (isDragged) {
-      return 'isDragged'
-    }
-    if (isResized) {
-      return 'isResized'
-    }
-    return null
-  }
-
-  return (
-    <Rnd
-      style={{'zIndex':REVISABLE ? REVISABLE.zIndex[idBox] : zIndex}}
-      className={setStyle()}
-      size={size}
-      position={position}
-      disableDragging={false}
-      onDragStart={onDragStart}
-      onDragStop={(e, d) => { moving({ x: d.x, y: d.y }) }}
-      onResize={(e, direction, ref, delta, position) => {
-        resized({width: ref.offsetWidth, height: ref.offsetHeight})
-        moving(position)
-      }}
-      onResizeStart={() => {setIsResized(true)}}
-      onResizeStop={() => {setIsResized(false)}}
-    >
-    {children}
-    </Rnd>
-  )
-}
 
 export const App = () => {
   const [ zIndex, setZIndex] = useState({
