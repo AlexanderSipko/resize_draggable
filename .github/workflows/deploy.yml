@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: add_env_file
         run: |
-          echo -e "${{ secrets.ENV_FILE }}" >> .env
+          echo -e "${{ vars.ENV_FILE }}" >> .env
           cat .env
 
       - name: Checkout repo
