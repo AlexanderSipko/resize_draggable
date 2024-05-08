@@ -27,8 +27,8 @@ jobs:
 
       - name: Build project
         run: |
-          - ls \
-          - npm run build
+          ls
+          npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
