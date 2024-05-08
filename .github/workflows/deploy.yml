@@ -13,9 +13,9 @@ jobs:
     steps:
       - name: add_env_file
         run: |
-          echo "${{ ENV_FILE }}" > .env
+          echo "${{ secrets.ENV_FILE }}" > .env
           cat .env
-          
+
       - name: Checkout repo
         uses: actions/checkout@v3
 
