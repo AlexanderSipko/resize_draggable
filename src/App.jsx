@@ -49,10 +49,11 @@ export const App = () => {
   
   return (
     <div>
-      <RNDElement idBox={'box1'} REVISABLE={REVISABLE} x={50}>
+      <p>{import.meta.env.VITE_VERSION}</p>
+      <RNDElement idBox={'box1'} REVISABLE={REVISABLE} x={50} y={20}>
         <Box />
       </RNDElement>
-      <RNDElement idBox={'box2'} REVISABLE={REVISABLE} x={60} >
+      <RNDElement idBox={'box2'} REVISABLE={REVISABLE} x={80} y={40}>
         <Box_2 />
       </RNDElement>
     </div>
