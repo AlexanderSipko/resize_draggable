@@ -37,7 +37,7 @@ export const App = () => {
     const maxZIndex = Object.values(zIndex).sort((a, b) => b-a)[0]
     const maxElementKey = Object.keys(zIndex).find(key => zIndex[key] === maxZIndex);
     const newZIndex = {...zIndex, ...{[idBox]:maxZIndex, [maxElementKey]:zIndex[idBox]}}
-    console.log(Object.values(zIndex).sort((a, b) => b-a)[1])
+    // console.log(Object.values(zIndex).sort((a, b) => b-a)[1])
     // console.log(zIndex)
     setZIndex(newZIndex)
   }
