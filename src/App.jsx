@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { RNDElement } from './components/RNDElement';
-
+import {PdfViewer} from './components/PDFViewer'
+import testFile from './components/test.pdf';
 import './App.css'
 
 const Box = () => (
@@ -51,10 +52,10 @@ export const App = () => {
     <div>
       <p>{import.meta.env.VITE_VERSION}</p>
       <RNDElement idBox={'box1'} REVISABLE={REVISABLE} x={50} y={20}>
-        <Box />
+        <PdfViewer testFile={testFile}/>
       </RNDElement>
-      <RNDElement idBox={'box2'} REVISABLE={REVISABLE} x={80} y={40}>
-        <Box_2 />
+      <RNDElement idBox={'box2'} REVISABLE={REVISABLE} x={150} y={80}>
+        <PdfViewer URL={'https://pdfobject.com/pdf'} PDFile={'sample.pdf'}/>
       </RNDElement>
     </div>
   )

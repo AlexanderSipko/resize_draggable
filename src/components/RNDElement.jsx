@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Rnd} from 'react-rnd';
+import { Rnd } from 'react-rnd';
 
 function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width=200, height=100, zIndex=1}) {
     const [ position, setPosition] = useState({x:x, y:y})
@@ -35,6 +35,8 @@ function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width=200, height=10
         className={setStyle()}
         size={size}
         position={position}
+        minWidth={500}
+        minHeight={500}
         disableDragging={false}
         onDragStart={onDragStart}
         onDragStop={(e, d) => { moving({ x: d.x, y: d.y }) }}
