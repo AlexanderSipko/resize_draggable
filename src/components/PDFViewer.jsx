@@ -4,7 +4,8 @@ import { Worker } from '@react-pdf-viewer/core';
 import { Viewer } from '@react-pdf-viewer/core';
 
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
-// import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation';
+
+
 
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
@@ -15,17 +16,87 @@ const pdfjsWorker = import('pdfjs-dist/build/pdf.worker.entry')
 
 import ru_RU from '@react-pdf-viewer/locales/lib/ru_RU.json';
 
+import PDFtest from './test.pdf'
+
+const renderToolbar = (Toolbar) => (
+    <Toolbar>
+        {(slots) => {
+            const {
+                CurrentPageInput,
+                Download,
+                Open,
+                EnterFullScreen,
+                GoToNextPage,
+                GoToPreviousPage,
+                NumberOfPages,
+                // Print,
+                // ShowSearchPopover,
+                Zoom,
+                ZoomIn,
+                ZoomOut,
+            } = slots;
+            return (
+                <div
+                    style={{
+                        alignItems: 'center',
+                        display: 'flex',
+                        top:'0',
+                        left:'0',
+                        backgroundColor: '#82c46b',
+                        justifyContent: 'space-around',
+                        width:'100%',
+                        height:'100%'
+                    }}
+                >
+                    {/* <div style={{ padding: '0px 2px' }}>
+                        <ShowSearchPopover />
+                    </div> */}
+                    <div style={{ padding: '0px 2px' }}>
+                        <EnterFullScreen />
+                    </div>
+                    <div style={{ padding: '0px 2px' }}>
+                        <ZoomOut />
+                    </div>
+                    <div style={{ padding: '0px 2px' }}>
+                        <Zoom />
+                    </div>
+                    <div style={{ padding: '0px 2px' }}>
+                        <ZoomIn />
+                    </div>
+                    <div style={{ padding: '0px 1px', marginLeft: 'auto', display:'inherit' }}>
+                        <GoToPreviousPage />
+                        <GoToNextPage />
+                    </div>
+                    <div style={{ padding: '0px 2px', display:'inherit' }}>
+                        <CurrentPageInput />
+                    </div>
+                    <div style={{ padding: '0px 2px', display:'inherit', fontSize:'14px', color:'gray' }}>
+                        страниц - <NumberOfPages />
+                    </div>
+                    <div style={{ padding: '0px 2px' }}>
+                        <Open />
+                    </div>
+                    <div style={{ padding: '0px 2px' }}>
+                        <Download />
+                    </div>
+                </div>
+            );
+        }}
+    </Toolbar>
+);
 
 export function PdfViewer(props) {
-    // const [fileUrl, setFileUrl] = useState(null);
-    // const openPluginInstance = openPlugin();
-    // const { OpenButton, fileUrl } = openPluginInstance;
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+    
+    const defaultLayoutPluginInstance = defaultLayoutPlugin(
+        {
+            sidebarTabs: (defaultTabs) => [],
+            renderToolbar
+        }
+    );
 
-    // console.log(defaultLayoutPluginInstance)
     const plugins = [
         defaultLayoutPluginInstance,
-        // openPluginInstance
+        props.searchPluginInstance
     ]
 
     const viewerStyle = {
@@ -33,26 +104,17 @@ export function PdfViewer(props) {
         width: '100%' // Устанавливаем ширину просмотра страницы в 100%
     };
 
-    let fileUrl = null
-    if (props.URL && props.PDFile) {
-        fileUrl = encodeURIComponent(props.URL + '/' + props.PDFile)
-        fileUrl = decodeURIComponent(fileUrl)
-    } else {
-        fileUrl = props.testFile
-    }
-
+    const pathPDf = encodeURIComponent(props.URL + '/' + props.PDFile)
     
     return (
         <>
-            <Worker workerUrl={pdfjsWorker}>
-                <div style={{height: '100%'}}>
-                    <Viewer
-                        fileUrl={fileUrl}
-                        plugins={plugins}
-                        style={viewerStyle}
-                        localization={ru_RU}
-                    />
-                </div>
+         <Worker workerUrl={pdfjsWorker} >
+                <Viewer
+                    fileUrl={decodeURIComponent(PDFtest)}
+                    plugins={plugins}
+                    style={viewerStyle}
+                    localization={ru_RU}
+                />
             </Worker>
         </>
     );

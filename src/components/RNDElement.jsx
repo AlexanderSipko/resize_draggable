@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Rnd } from 'react-rnd';
 
-function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width=200, height=100, zIndex=1}) {
+function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width=700, height=400, zIndex=1}) {
     const [ position, setPosition] = useState({x:x, y:y})
     const [ size, setSize] = useState({width:width, height:height})
     const [isDragged, setIsDragged] = useState(false)

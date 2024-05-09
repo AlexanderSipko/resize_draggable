@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { searchPlugin } from '@react-pdf-viewer/search';
 import { RNDElement } from './components/RNDElement';
 import {PdfViewer} from './components/PDFViewer'
+import { CustomSearch } from './components/SearchPDFViewer'
 import testFile from './components/test.pdf';
 import './App.css'
 
@@ -23,6 +25,7 @@ const Box_4 = () => (
 );
 
 export const App = () => {
+  const searchPluginInstance = searchPlugin();
   const [ zIndex, setZIndex] = useState({
     'box1':1,
     'box2':2,
@@ -49,13 +52,16 @@ export const App = () => {
   }
   
   return (
-    <div>
+    <div style={{'height':'600px'}}>
       <p>{import.meta.env.VITE_VERSION}</p>
-      <RNDElement idBox={'box1'} REVISABLE={REVISABLE} x={50} y={20}>
-        <PdfViewer testFile={testFile}/>
-      </RNDElement>
-      <RNDElement idBox={'box2'} REVISABLE={REVISABLE} x={150} y={80}>
-        <PdfViewer URL={'https://pdfobject.com/pdf'} PDFile={'sample.pdf'}/>
+      <CustomSearch searchPluginInstance={searchPluginInstance}/>
+      {/* <PdfViewer testFile={testFile} searchPluginInstance={searchPluginInstance}/> */}
+      {/* <RNDElement idBox={'box1'} REVISABLE={REVISABLE} x={50} y={20}>
+        <PdfViewer testFile={testFile} searchPluginInstance={searchPluginInstance}/>
+      </RNDElement> */}
+     
+      <RNDElement idBox={'box2'} REVISABLE={null} x={150} y={80}>
+        <PdfViewer URL={'https://pdfobject.com/pdf'} PDFile={'sample.pdf'} searchPluginInstance={searchPluginInstance}/>
       </RNDElement>
     </div>
   )
