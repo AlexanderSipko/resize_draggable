@@ -30,7 +30,7 @@ const renderToolbar = (Toolbar) => (
                 GoToPreviousPage,
                 NumberOfPages,
                 // Print,
-                // ShowSearchPopover,
+                ShowSearchPopover,
                 Zoom,
                 ZoomIn,
                 ZoomOut,
@@ -48,9 +48,9 @@ const renderToolbar = (Toolbar) => (
                         height:'100%'
                     }}
                 >
-                    {/* <div style={{ padding: '0px 2px' }}>
+                    <div style={{ padding: '0px 2px' }}>
                         <ShowSearchPopover />
-                    </div> */}
+                    </div>
                     <div style={{ padding: '0px 2px' }}>
                         <EnterFullScreen />
                     </div>

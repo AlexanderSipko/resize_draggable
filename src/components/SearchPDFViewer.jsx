@@ -16,7 +16,10 @@ const styleMainDIV = {
     display: 'flex',
     padding: '4px',
     marginBottom: '10px',
-    width: '100%'
+    width: '100%',
+    // position:'sticky',
+    // top:'20px',
+    // zIndex:'2'
 }
 
 const styleWrapperInputDIV = {
@@ -87,7 +90,7 @@ export const CustomSearch = ({searchPluginInstance}) => {
                                     }
                                 }}
                             />
-                            <Tooltip
+                            {/* <Tooltip
                                 position={Position.BottomCenter}
                                 target={
                                     <button
@@ -152,7 +155,7 @@ export const CustomSearch = ({searchPluginInstance}) => {
                                 }
                                 content={() => 'Слово целиком'}
                                 offset={{ left: 0, top: 8 }}
-                            />
+                            /> */}
                         </div>
                         {readyToSearch &&
                             renderSearchProps.keyword &&
@@ -192,7 +195,7 @@ export const CustomSearch = ({searchPluginInstance}) => {
                             
                         </div>
 
-                        <div style={{'weight':'800px', 'position':'absolute', 'top':'120px'}}>
+                        <div style={{'weight':'800px', 'position':'absolute', 'top':'80px', 'maxHeight':'200px', 'overflow':'auto'}}>
                         {match.length > 0 && match.map((ma, index) => {
                                 const isCurrent = renderSearchProps.currentMatch === index + 1
                                 const START_INDEX = ma.startIndex -20 < 0 ? 0 : ma.startIndex - 100
@@ -203,7 +206,7 @@ export const CustomSearch = ({searchPluginInstance}) => {
                                 onClick={() => renderSearchProps.jumpToMatch(index + 1)}
                                 >
                                     <span style={{'color':'gray'}}>
-                                        #{ma.pageIndex + 1} {'\t'}
+                                        стр. {ma.pageIndex + 1} {'\t'}
                                     </span>
                                     <span style={{'color':'black'}}>
                                         {ma.pageText.slice(START_INDEX, ma.startIndex)}

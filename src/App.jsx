@@ -52,15 +52,16 @@ export const App = () => {
   }
   
   return (
-    <div style={{'height':'600px'}}>
-      <p>{import.meta.env.VITE_VERSION}</p>
+    <div style={{'height':'100%'}}>
+      <p style={{'fontSize':'10px', 'margin':'4px', 'padding':'0', 'position':'static'}}>{import.meta.env.VITE_VERSION}</p>
       <CustomSearch searchPluginInstance={searchPluginInstance}/>
+      {/* <CustomSearch searchPluginInstance={searchPluginInstance}/> */}
       {/* <PdfViewer testFile={testFile} searchPluginInstance={searchPluginInstance}/> */}
       {/* <RNDElement idBox={'box1'} REVISABLE={REVISABLE} x={50} y={20}>
         <PdfViewer testFile={testFile} searchPluginInstance={searchPluginInstance}/>
       </RNDElement> */}
      
-      <RNDElement idBox={'box2'} REVISABLE={null} x={150} y={80}>
+      <RNDElement idBox={'box2'} REVISABLE={null} x={10} y={250}>
         <PdfViewer URL={'https://pdfobject.com/pdf'} PDFile={'sample.pdf'} searchPluginInstance={searchPluginInstance}/>
       </RNDElement>
     </div>
