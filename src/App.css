@@ -1,27 +1,5 @@
-
-
-.box1 {
-  background: rgb(176, 241, 84);
-  height: 100%;
-  width: 100%;
-}
-
-.box2 {
-  background: rgb(187, 198, 140);
-  height: 100%;
-  width: 100%;
-}
-
-.box3 {
-  background: rgb(118, 125, 84);
-  height: 100%;
-  width: 100%;
-}
-
-.box4 {
-  background: rgb(94, 100, 66);
-  height: 500px;
-  width: 500px;
+body {
+  font-family:Arial, Helvetica, sans-serif
 }
 
 .isDragged {
@@ -29,15 +7,21 @@
 }
 
 .isResized {
-  border: 4px solid red;
+  border: 4px solid green;
   padding: 2px;
   border-radius: 5px;
 }
 
 .rpv-search__highlight {
-  outline: 2px dashed red;
+  outline: 2px dashed green;
 }
 
+.searchItem:hover {
+  /* font-size: 16px; */
+  background-color: rgb(250, 247, 245);
+  transform: scale(1.08);
+  /* margin-left: 5px */
+}
 /* #rpv-core__popover-body-inner-search, #rpv-core__popover-body-inner-zoom {
   min-height: 150px;
 } */

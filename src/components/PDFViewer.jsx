@@ -5,8 +5,6 @@ import { Viewer } from '@react-pdf-viewer/core';
 
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 
-
-
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import "pdfjs-dist/build/pdf.worker.js"
@@ -16,7 +14,6 @@ const pdfjsWorker = import('pdfjs-dist/build/pdf.worker.entry')
 
 import ru_RU from '@react-pdf-viewer/locales/lib/ru_RU.json';
 
-import PDFtest from './test.pdf'
 
 const renderToolbar = (Toolbar) => (
     <Toolbar>
@@ -104,13 +101,13 @@ export function PdfViewer(props) {
         width: '100%' // Устанавливаем ширину просмотра страницы в 100%
     };
 
-    const pathPDf = encodeURIComponent(props.URL + '/' + props.PDFile)
+    const pathPDf = encodeURIComponent(props.PDFile)
     
     return (
         <>
          <Worker workerUrl={pdfjsWorker} >
                 <Viewer
-                    fileUrl={decodeURIComponent(PDFtest)}
+                    fileUrl={decodeURIComponent(pathPDf)}
                     plugins={plugins}
                     style={viewerStyle}
                     localization={ru_RU}

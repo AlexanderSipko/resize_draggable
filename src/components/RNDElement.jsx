@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Rnd } from 'react-rnd';
 
-function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width='95%', height=500, zIndex=1}) {
+function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width='98vw', height=500, zIndex=1}) {
     const [ position, setPosition] = useState({x:x, y:y})
     const [ size, setSize] = useState({width:width, height:height})
     const [isDragged, setIsDragged] = useState(false)
@@ -46,6 +46,7 @@ function RNDElement ({children, idBox, REVISABLE, x=0, y=0, width='95%', height=
         }}
         onResizeStart={() => {setIsResized(true)}}
         onResizeStop={() => {setIsResized(false)}}
+        // dragAxis='y'
       >
       {children}
       </Rnd>
