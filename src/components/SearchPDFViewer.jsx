@@ -1,5 +1,5 @@
 // при установке важно добавить worker
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { MinimalButton, Position, Tooltip } from '@react-pdf-viewer/core';
 import { NextIcon, PreviousIcon} from '@react-pdf-viewer/search';
@@ -78,7 +78,7 @@ export const CustomSearch = ({searchPluginInstance}) => {
     };
 
     useEffect(() => {
-        if (!currentKeyword.keyword) {
+        if (!currentKeyword.keyword && matches.length !== 0) {
             clearHighlights()
             setMatches([])
             setDefault()
@@ -330,10 +330,29 @@ function RenderSearchMaths ({
     }
 
     const [ searchArray, setSearchArray] = useState([])
+    const prevMatch = useRef(match)
+    const prevExtendsIndex = useRef(extendsIndex)
+    const prevHasDigit = useRef(hasDigit)
+    
+    const updateArray = () => {
+        // getMashesArray(match, extendsIndex, hasDigit, setSearchArray)
+        setSearchArray(getMashesArray(match, extendsIndex, hasDigit));
+        // setSearchArray(t_array)
+    }
+
 
     useEffect(() => {
-        setSearchArray(getMashesArray(match, extendsIndex, hasDigit))
-    }, [getMashesArray, match, extendsIndex, hasDigit])
+        if (
+            prevMatch.current !== match ||
+            prevExtendsIndex.current !== extendsIndex ||
+            prevHasDigit.current !== hasDigit
+        ) {
+            updateArray()
+            prevMatch.current = match
+            prevExtendsIndex.current = extendsIndex
+            prevHasDigit.current = hasDigit
+        }
+    }, [match, extendsIndex, hasDigit])
 
     return (
         <>
