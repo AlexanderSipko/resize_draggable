@@ -16,9 +16,24 @@ import PartText from '../assets/part-text.png'
 import FullText from '../assets/full-text.png'
 import IsDigit from '../assets/digit.png'
 
-const synonymSearch = (keyword, keywordWord) => {
+const synonymSearch = (keyword, keywordWord, setHasDigit, setExtendsIndex, setDefault) => {
+    
     if (keywordWord === 'площадь') {
+        setDefault()
+        setHasDigit(true)
+        setExtendsIndex({
+            beforeStartIndex:5,
+            afterStartIndex:10
+        })
         return [keyword, 'метры', 'кв.м']
+    } else if (keywordWord === 'кадастровый') {
+        setDefault()
+        let regExp = new RegExp('[0-9]{2}:[0-9]{2}:[0-9]{6}:[0-9]{4}', 'g')
+        return regExp
+    } else if (keywordWord === 'огрн') {
+        setDefault()
+        let regExp = /[0-9]{13}/g
+        return regExp
     } else {
         return keyword
     }
@@ -37,11 +52,27 @@ export const CustomSearch = ({searchPluginInstance}) => {
         beforeStartIndex:25,
         afterStartIndex:75
     });
+
+    const setDefault = () => {
+        setExtendsIndex({
+            beforeStartIndex:25,
+            afterStartIndex:75
+        })
+        setCurrentKeyword(
+            {
+                keyword: currentKeyword.keyword,
+                matchCase: false,
+                wholeWords: false,
+            }
+        )
+        setHasDigit(false)
+    }
+
     const { highlight, jumpToNextMatch, jumpToPreviousMatch, jumpToMatch, currentMatch, clearHighlights } = searchPluginInstance;
 
     const baseSearch = (keyword) => {
         setCurrentKeyword(keyword);
-        highlight(synonymSearch(keyword, keyword.keyword)).then(matches => {
+        highlight(synonymSearch(keyword, keyword.keyword, setHasDigit, setExtendsIndex, setDefault)).then(matches => {
             setMatches(matches)
         });
     };
@@ -50,6 +81,7 @@ export const CustomSearch = ({searchPluginInstance}) => {
         if (!currentKeyword.keyword) {
             clearHighlights()
             setMatches([])
+            setDefault()
         }
     }, [currentKeyword])
 

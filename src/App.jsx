@@ -9,7 +9,9 @@ import PDFtest from './components/test.pdf'
 
 export const App = () => {
   const searchPluginInstance = searchPlugin();
-    
+
+  // console.log(searchPluginInstance)
+  
   useEffect(() => {
     document.title = import.meta.env.VITE_NAME
   }, [])
