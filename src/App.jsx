@@ -20,7 +20,7 @@ export const App = () => {
     <div style={{'height':'98vh'}}>
       <InformVersion/>
       <CustomSearch searchPluginInstance={searchPluginInstance}/>
-      <RNDElement idBox={'box1'} REVISABLE={null} x={5} y={350}>
+      <RNDElement idBox={'box1'} REVISABLE={null} x={5} y={550}>
         <PdfViewer PDFile={PDFtest} searchPluginInstance={searchPluginInstance}/>
       </RNDElement>
     </div>
