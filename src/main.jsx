@@ -3,7 +3,8 @@ import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  useParams
+  useParams,
+  HashRouter
 } from "react-router-dom";
 
 import {App} from './App.jsx'
