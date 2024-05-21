@@ -21,6 +21,7 @@ export const App = () => {
       <InformVersion/>
       <CustomSearch searchPluginInstance={searchPluginInstance}/>
       <RNDElement idBox={'box1'} REVISABLE={null} x={5} y={350}>
+        
         <PdfViewer PDFile={PDFtest} searchPluginInstance={searchPluginInstance}/>
       </RNDElement>
     </div>
